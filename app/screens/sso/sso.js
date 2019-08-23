@@ -89,6 +89,10 @@ class SSO extends PureComponent {
             this.loginUrl = `${props.serverUrl}/oauth/gitlab/mobile_login`;
             this.completedUrl = '/signup/gitlab/complete';
             break;
+        case ViewTypes.PHABRICATOR:
+            this.loginUrl = `${props.serverUrl}/oauth/phabricator/mobile_login`;
+            this.completedUrl = `${props.serverUrl}/signup/phabricator/complete`;
+            break;
         case ViewTypes.SAML:
             this.loginUrl = `${props.serverUrl}/login/sso/saml?action=mobile`;
             this.completedUrl = '/login/sso/saml';

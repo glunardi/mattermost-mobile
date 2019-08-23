@@ -15,6 +15,7 @@
 
     "HideEmailLoginExperimental": false,
     "HideGitLabLoginExperimental": false,
+    "HidePhabricatorLoginExperimental": false,
     "HideLDAPLoginExperimental": false,
     "HideSAMLLoginExperimental": false,
     "HideO365LoginExperimental": false,

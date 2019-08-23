@@ -21,6 +21,7 @@ import {preventDoubleTap} from 'app/utils/tap';
 
 import LocalConfig from 'assets/config';
 import gitlab from 'assets/images/gitlab.png';
+import phabricator from 'assets/images/phabricator.png';
 import logo from 'assets/images/logo.png';
 import {paddingHorizontal as padding} from 'app/components/safe_area_view/iphone_x_spacing';
 
@@ -212,6 +213,34 @@ export default class LoginOptions extends PureComponent {
         return null;
     };
 
+    renderPhabricatorOption = () => {
+        const {config} = this.props;
+
+        const forceHideFromLocal = LocalConfig.HidePhabricatorLoginExperimental;
+
+        if (!forceHideFromLocal && config.EnableSignUpWithPhabricator === 'true') {
+            return (
+                <Button
+                    key='phabricator'
+                    onPress={preventDoubleTap(() => this.goToSSO(ViewTypes.PHABRICATOR))}
+                    containerStyle={[GlobalStyles.signupButton, {backgroundColor: '#548'}]}
+                >
+                    <Image
+                        source={phabricator}
+                        style={{height: 18, marginRight: 5, width: 18}}
+                    />
+                    <Text
+                        style={[GlobalStyles.signupButtonText, {color: 'white'}]}
+                    >
+                        {'Phabricator'}
+                    </Text>
+                </Button>
+            );
+        }
+
+        return null;
+    };
+
     renderSamlOption = () => {
         const {config, license} = this.props;
         const forceHideFromLocal = LocalConfig.HideSAMLLoginExperimental;
@@ -278,6 +307,7 @@ export default class LoginOptions extends PureComponent {
                 {this.renderEmailOption()}
                 {this.renderLdapOption()}
                 {this.renderGitlabOption()}
+                {this.renderPhabricatorOption()}
                 {this.renderSamlOption()}
                 {this.renderO365Option()}
             </ScrollView>
